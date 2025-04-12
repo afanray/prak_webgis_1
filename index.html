@@ -28,12 +28,23 @@
         attribution: "&copy; OpenStreetMap contributors",
       }).addTo(map);
 
+      // Buat custom icon
+      var customIcon = L.icon({
+        iconUrl: "image/location.png", // Ganti dengan path ikon kamu
+        iconSize: [55, 55], // Ukuran ikon (opsional)
+        iconAnchor: [16, 32], // Titik dasar ikon
+        popupAnchor: [0, -32], // Posisi popup
+      });
+
       // Ambil data GeoJSON dari `get_data.php`
       fetch("get-data.php")
         .then((response) => response.json())
         .then((data) => {
           // Tambahkan data GeoJSON ke peta
           L.geoJSON(data, {
+            pointToLayer: function (feature, latlng) {
+              return L.marker(latlng, { icon: customIcon });
+            },
             onEachFeature: function (feature, layer) {
               layer.bindPopup(
                 "Nama Sekolah: " + feature.properties.nama_sekolah

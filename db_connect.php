@@ -1,4 +1,3 @@
-
 <?php
 // Konfigurasi koneksi database
 $dsn = "pgsql:host=localhost;port=5436;dbname=gis_db;user=postgres;password=1234567890";
@@ -9,5 +8,3 @@ try {
 } catch (PDOException $e) {
     die("Koneksi ke database gagal: " . $e->getMessage());
 }
-?>
-
