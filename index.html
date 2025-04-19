@@ -10,23 +10,13 @@
         height: 600px;
       }
 
-      /* menambah form input koordinat */
-
-      #form-koordinat {
-        margin: 10px 0;
-      }
-
-      .form-container {
-        max-width: 400px;
+      .container {
+        max-width: vw100;
         padding: 20px;
         background-color: #f5f5f5;
         border-radius: 10px;
-        margin-top: 10px;
+        margin: 20px;
         font-family: Arial, sans-serif;
-      }
-
-      .form-group {
-        margin-bottom: 10px;
       }
 
       label {
@@ -60,8 +50,8 @@
     </style>
   </head>
   <body>
-    <h1>Peta Lokasi Sekolah</h1>
-    <div>
+    <h1 class="container">Peta Lokasi Sekolah</h1>
+    <div class="container">
       <form action="../basis-data-spasial/insert_point.php" method="POST">
         <label for="fname">Nama lokasi:</label>
         <input type="text" id="fname" name="fname" /><br /><br />
@@ -81,7 +71,7 @@
       </form>
     </div>
 
-    <div id="map"></div>
+    <div class="container" id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -122,6 +112,7 @@
         })
         .catch((error) => console.error("Error loading GeoJSON data:", error));
 
+      // fungsi untuk menambahkan titik saat diklik
       map.on("click", function (e) {
         var lat = e.latlng.lat;
         var lng = e.latlng.lng;
@@ -129,11 +120,6 @@
         document.getElementById("latitude").value = lat;
         document.getElementById("longitude").value = lng;
       });
-
-      if (window.clickMarker) {
-        map.removeLayer(window.clickMarker);
-      }
-      window.clickMarker = L.marker(e.latlng).addTo(map);
     </script>
   </body>
 </html>
