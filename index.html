@@ -103,7 +103,9 @@
             },
             onEachFeature: function (feature, layer) {
               layer.bindPopup(
-                "Nama Sekolah: " + feature.properties.nama_sekolah
+                "Nama Sekolah: " +
+                  feature.properties.nama_sekolah +
+                  feature.properties.id
               );
             },
           }).addTo(map);
